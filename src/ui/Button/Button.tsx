@@ -1,32 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ButtonColorTypes, ButtonSizeTypes } from '../../helpers/enums';
-import { theme } from '../../helpers/theme';
+import { theme, space, buttonColor, buttonSize } from '../../helpers/theme';
 
-const size = (props: IButton) => {
-    return theme.buttonSizes[props.size];
-};
-
-const color = (props: IButton) => {
-    return theme.buttonColors[props.color];
-};
-
-const space = (props: any) => ({
-    margin: props.margin || '',
-    marginBottom: props.marginBottom || '',
-    marginTop: props.marginTop || '',
-    marginLeft: props.marginLeft || '',
-    marginRight: props.marginRight || '',
-    padding: props.padding || '',
-    paddingBottom: props.paddingBottom || '',
-    paddingTop: props.paddingTop || '',
-    paddingLeft: props.paddingLeft || '',
-    paddingRight: props.paddingRight || '',
-});
-
-const StyledButton = styled.button`
-    ${size};
-    ${color};
+const StyledButton = styled.button<IButton>`
+    ${buttonSize};
+    ${buttonColor};
+    ${space};
     display: flex;
     align-items: center;
     font-size: 16px;
@@ -36,18 +16,24 @@ const StyledButton = styled.button`
     border-radius: 5px;
     justify-content: center;
     outline: none;
-    ${space}
+    ${(props: { disabled: boolean; }) =>
+        props.disabled &&
+        css`
+            background: ${theme.colors.grey};
+            color: ${theme.colors.white};
+        `}
 `;
 
 interface IButton {
-    color: ButtonColorTypes;
-    size: ButtonSizeTypes;
+    buttonColor: ButtonColorTypes;
+    buttonSize: ButtonSizeTypes;
     onClick: (...args: any) => void;
+    disabled: boolean;
 }
 
-const Button: React.FC<IButton> = ({ children, color, size, onClick, ...props }) => {
+const Button: React.FC<IButton> = ({ children, buttonColor, buttonSize, onClick, disabled, ...props }) => {
     return (
-        <StyledButton color={color} size={size} onClick={onClick} {...props}>
+        <StyledButton buttonColor={buttonColor} buttonSize={buttonSize} onClick={onClick} disabled={disabled} {...props}>
             {children}
         </StyledButton>
     );

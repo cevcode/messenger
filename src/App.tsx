@@ -5,7 +5,7 @@ import { ButtonColorTypes, ButtonSizeTypes } from './helpers/enums';
 const App: React.FC = () => {
     return (
         <div className="App">
-            <Button color={ButtonColorTypes.blue} size={ButtonSizeTypes.l} onClick={() => alert('test')}>
+            <Button buttonColor={ButtonColorTypes.blue} buttonSize={ButtonSizeTypes.l} onClick={() => alert('test')}>
                 Test
             </Button>
         </div>

@@ -11,7 +11,15 @@ export enum ColorTypes {
     black = '#000',
     red = '#ff363a',
     green = '#56ff2c',
+    grey = '#919191',
     default = '#2270FF'
+}
+
+export enum PositionTypes {
+    left = 'left',
+    right = 'right',
+    center = 'center',
+    default = 'left',
 }
 
 export enum ButtonColorTypes {
@@ -28,4 +36,22 @@ export enum ButtonSizeTypes {
     l = 'l',
     m = 'm',
     default = 'default',
+}
+
+export enum FontSizeTypes {
+    s = 's',
+    m = 'm',
+    l = 'l',
+    xl = 'xl',
+    xxl = 'xxl',
+    default = 'default',
+}
+
+export enum WeightTypes {
+    w300 = '300',
+    w400 = '400',
+    w500 = '500',
+    w600 = '600',
+    w700 = '700',
+    default = '400',
 }
