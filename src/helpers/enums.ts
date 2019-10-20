@@ -55,3 +55,29 @@ export enum WeightTypes {
     w700 = '700',
     default = '400',
 }
+
+export enum DirectionTypes {
+    row = 'row',
+    column = 'column',
+    default = 'column',
+}
+
+export enum JustifyContentTypes {
+    flexStart = 'flexStart',
+    center = 'center',
+    stretch = 'stretch',
+    flexEnd = 'flexEnd',
+    spaceBetween = 'spaceBetween',
+    spaceAround = 'spaceAround',
+    default = 'default',
+}
+
+export enum AlignItemsTypes {
+    flexStart = 'flexStart',
+    center = 'center',
+    stretch = 'stretch',
+    flexEnd = 'flexEnd',
+    spaceBetween = 'spaceBetween',
+    spaceAround = 'spaceAround',
+    default = 'default',
+}

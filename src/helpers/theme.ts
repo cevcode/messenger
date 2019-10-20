@@ -1,4 +1,12 @@
-import { PositionTypes, FontSizeTypes, WeightTypes, ButtonColorTypes, ButtonSizeTypes } from './enums';
+import {
+    PositionTypes,
+    FontSizeTypes,
+    WeightTypes,
+    ButtonColorTypes,
+    ButtonSizeTypes,
+    DirectionTypes,
+    JustifyContentTypes, AlignItemsTypes,
+} from './enums';
 
 export const theme = {
     colors: {
@@ -10,102 +18,163 @@ export const theme = {
         grey: '#919191',
     },
 
+    jc: {
+        flexStart: `
+            justify-content: flex-start;
+        `,
+        center: `
+            justify-content: center;
+        `,
+        stretch: `
+            justify-content: stretch;
+        `,
+        flexEnd: `
+            justify-content: flex-end;
+        `,
+        spaceBetween: `
+            justify-content: space-between;
+        `,
+        spaceAround: `
+            justify-content: space-around;
+        `,
+        default: `
+            justify-content: flex-start;
+        `,
+    },
+
+    ai: {
+        flexStart: `
+            justify-content: flex-start;
+        `,
+        center: `
+            justify-content: center;
+        `,
+        stretch: `
+            justify-content: stretch;
+        `,
+        flexEnd: `
+            justify-content: flex-end;
+        `,
+        spaceBetween: `
+            justify-content: space-between;
+        `,
+        spaceAround: `
+            justify-content: space-around;
+        `,
+        default: `
+            justify-content: flex-start;
+        `,
+    },
+
+    direction: {
+        row: `
+            flex-direction: row;
+        `,
+        column: `
+            flex-direction: column;
+        `,
+        default: `
+            flex-direction: column;
+        `,
+    },
+
     position: {
         left: `
-      text-align: left;
-    `,
+            text-align: left;
+        `,
         right: `
-      text-align: right;
-    `,
+            text-align: right;
+        `,
         center: `
-      text-align: center;
-    `,
+            text-align: center;
+        `,
         default: `
-      text-align: left;
-    `,
+            text-align: left;
+        `,
     },
 
     buttonSizes: {
         s: `
-      width: 120px;
-    `,
+            width: 120px;
+        `,
         m: `
-      width: 180px;
-    `,
+            width: 180px;
+        `,
         l: `
-      width: 240px;
-    `,
+            width: 240px;
+        `,
         default: `
-      width: 100%;
-    `,
+            width: 100%;
+        `,
     },
 
     weight: {
         300: `
-      font-weight: 300;
-    `,
+            font-weight: 300;
+        `,
         400: `
-      font-weight: 400;
-    `,
+            font-weight: 400;
+        `,
         500: `
-      font-weight: 500;
-    `,
+            font-weight: 500;
+        `,
         600: `
-      font-weight: 600;
-    `,
+            font-weight: 600;
+        `,
         700: `
-      font-weight: 700;
-    `,
+            font-weight: 700;
+        `,
         default: `
-      font-weight: 400;
-    `,    },
+            font-weight: 400;
+        `,
+    },
 
     fontSizes: {
         s: `
-      font-size: 12px;
-    `,
+            font-size: 12px;
+        `,
         m: `
-      font-size: 20px;
-    `,
+            font-size: 20px;
+        `,
         l: `
-      font-size: 24px;
-    `,
+            font-size: 24px;
+        `,
         xl: `
-      font-size: 36px;
-    `,
+            font-size: 36px;
+        `,
         xxl: `
-      font-size: 48px;
-    `,
+            font-size: 48px;
+        `,
         default: `
-      font-size: 16px;
-    `,
+            font-size: 16px;
+        `,
     },
 
     buttonColors: {
         green: `
-      background-color: #56ff2c;
-      color: #fff;
-    `,
+          background-color: #56ff2c;
+          color: #fff;
+        `,
         blue: `
-      background-color: #2270FF;
-      color: #fff;
-    `,
+          background-color: #2270FF;
+          color: #fff;
+        `,
         red: `
-      background-color: #ff363a;
-      color: #fff;
-    `,
+          background-color: #ff363a;
+          color: #fff;
+        `,
         default: `
-      background-color: #2270FF;
-      color: #fff';
-    `,
+          background-color: #2270FF;
+          color: #fff';
+        `,
         white: `
-      background-color: #fff;
-      color: #000';
-    `,
+          background-color: #fff;
+          color: #000';
+        `,
         black: `
-      background-color: #000;
-      color: #fff';
-    `,
+          background-color: #000;
+          color: #fff';
+        `,
     },
 };
 
@@ -139,8 +208,17 @@ export const buttonColor = (props: { buttonColor: ButtonColorTypes }) => {
 };
 
 export const buttonSize = (props: { buttonSize: ButtonSizeTypes }) => {
-    if(props.buttonSize) {
-        return theme.buttonSizes[props.buttonSize];
-    }
-    return theme.buttonSizes.default;
+    return theme.buttonSizes[props.buttonSize];
+};
+
+export const direction = (props: { direction: DirectionTypes }) => {
+    return theme.direction[props.direction];
+};
+
+export const jc = (props: { jc: JustifyContentTypes }) => {
+    return theme.jc[props.jc];
+};
+
+export const ai = (props: { ai: AlignItemsTypes }) => {
+    return theme.ai[props.ai];
 };

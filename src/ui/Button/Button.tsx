@@ -16,7 +16,7 @@ const StyledButton = styled.button<IButton>`
     border-radius: 5px;
     justify-content: center;
     outline: none;
-    ${(props: { disabled: boolean; }) =>
+    ${(props) =>
         props.disabled &&
         css`
             background: ${theme.colors.grey};
@@ -28,7 +28,7 @@ interface IButton {
     buttonColor: ButtonColorTypes;
     buttonSize: ButtonSizeTypes;
     onClick: (...args: any) => void;
-    disabled: boolean;
+    disabled?: boolean;
 }
 
 const Button: React.FC<IButton> = ({ children, buttonColor, buttonSize, onClick, disabled, ...props }) => {
