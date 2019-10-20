@@ -3,7 +3,7 @@ import {
     FontSizeTypes,
     WeightTypes,
     ButtonColorTypes,
-    ButtonSizeTypes,
+    ComponentSizesTypes,
     DirectionTypes,
     JustifyContentTypes, AlignItemsTypes,
 } from './enums';
@@ -16,6 +16,10 @@ export const theme = {
         red: '#ff363a',
         green: '#56ff2c',
         grey: '#919191',
+    },
+
+    globals: {
+      height: '44px',
     },
 
     jc: {
@@ -93,7 +97,7 @@ export const theme = {
         `,
     },
 
-    buttonSizes: {
+    componentSizes: {
         s: `
             width: 120px;
         `,
@@ -207,8 +211,8 @@ export const buttonColor = (props: { buttonColor: ButtonColorTypes }) => {
     return theme.buttonColors[props.buttonColor];
 };
 
-export const buttonSize = (props: { buttonSize: ButtonSizeTypes }) => {
-    return theme.buttonSizes[props.buttonSize];
+export const componentSize = (props: { componentSize: ComponentSizesTypes }) => {
+    return theme.componentSizes[props.componentSize];
 };
 
 export const direction = (props: { direction: DirectionTypes }) => {

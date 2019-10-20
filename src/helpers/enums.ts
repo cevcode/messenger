@@ -31,7 +31,7 @@ export enum ButtonColorTypes {
     default = 'default'
 }
 
-export enum ButtonSizeTypes {
+export enum ComponentSizesTypes {
     s = 's',
     l = 'l',
     m = 'm',
@@ -80,4 +80,10 @@ export enum AlignItemsTypes {
     spaceBetween = 'spaceBetween',
     spaceAround = 'spaceAround',
     default = 'default',
+}
+
+export enum InputTypes {
+    text = 'text',
+    number = 'number',
+    search = 'search',
 }
