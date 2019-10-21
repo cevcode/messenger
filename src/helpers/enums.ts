@@ -16,10 +16,10 @@ export enum ColorTypes {
 }
 
 export enum PositionTypes {
-    left = 'left',
-    right = 'right',
+    left = 'flex-start',
+    right = 'flex-end',
     center = 'center',
-    default = 'left',
+    default = 'flex-start',
 }
 
 export enum ButtonColorTypes {
@@ -28,13 +28,15 @@ export enum ButtonColorTypes {
     black = 'black',
     red = 'red',
     green = 'green',
-    default = 'default'
+    default = 'default',
+    undefined = 'default',
 }
 
 export enum ComponentSizesTypes {
     s = 's',
     l = 'l',
     m = 'm',
+    full = 'full',
     default = 'default',
 }
 
@@ -48,11 +50,11 @@ export enum FontSizeTypes {
 }
 
 export enum WeightTypes {
-    w300 = '300',
     w400 = '400',
     w500 = '500',
     w600 = '600',
     w700 = '700',
+    w800 = '800',
     default = '400',
 }
 
@@ -86,4 +88,17 @@ export enum InputTypes {
     text = 'text',
     number = 'number',
     search = 'search',
+}
+
+export interface ISpaceTypes {
+    margin?: string,
+    marginBottom?: string
+    marginTop?: string
+    marginLeft?: string
+    marginRight?: string
+    padding?: string
+    paddingBottom?: string
+    paddingTop?: string
+    paddingLeft?: string
+    paddingRight?: string
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { PositionTypes, ColorTypes, FontSizeTypes, WeightTypes } from '../../helpers/enums';
-import { space, weight, fontSize, align } from '../../helpers/theme';
+import { PositionTypes, ColorTypes, FontSizeTypes, WeightTypes, ISpaceTypes } from 'helpers/enums';
+import { space, weight, fontSize, align } from 'helpers/theme';
 
 const StyledTitle = styled.h2<ITitle>`
     ${space};
@@ -9,17 +9,18 @@ const StyledTitle = styled.h2<ITitle>`
     ${fontSize};
     ${align};
     display: flex;
+    font-family: 'Montserrat', sans-serif;
     width: auto;
     color: ${props => props.color};
     text-transform: ${props => props.uppercase ? 'uppercase' : 'none'};
 `;
 
-interface ITitle {
-    position: PositionTypes;
-    color: ColorTypes;
-    fontSize: FontSizeTypes;
-    uppercase: boolean;
-    weight: WeightTypes;
+interface ITitle extends ISpaceTypes {
+    position?: PositionTypes;
+    color?: ColorTypes;
+    fontSize?: FontSizeTypes;
+    uppercase?: boolean;
+    weight?: WeightTypes;
 }
 
 const Title: React.FC<ITitle> = ({ children, color, fontSize, weight, position, ...props }) => {

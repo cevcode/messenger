@@ -1,11 +1,11 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { ButtonColorTypes, ComponentSizesTypes } from '../../helpers/enums';
-import { theme, space, buttonColor, componentSize } from '../../helpers/theme';
+import { ButtonColorTypes, ComponentSizesTypes, ISpaceTypes } from 'helpers/enums';
+import { buttonColor, componentSize, space, theme } from 'helpers/theme';
 
-interface IButton {
-    buttonColor: ButtonColorTypes;
-    componentSize: ComponentSizesTypes;
+interface IButton extends ISpaceTypes {
+    buttonColor?: ButtonColorTypes;
+    componentSize?: ComponentSizesTypes;
     onClick: (...args: any) => void;
     disabled?: boolean;
 }

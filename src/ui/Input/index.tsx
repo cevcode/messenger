@@ -1,9 +1,9 @@
 import * as React from 'react';
 import MaskedInput from 'react-text-mask';
 import { MaskTypes } from './helpers';
-import { ComponentSizesTypes, InputTypes } from '../../helpers/enums';
+import { ComponentSizesTypes, InputTypes, ISpaceTypes } from 'helpers/enums';
 import styled, { css } from 'styled-components';
-import { componentSize, space, theme } from '../../helpers/theme';
+import { componentSize, space, theme } from 'helpers/theme';
 
 const StyledInput = styled.input<IInput>`
     ${componentSize};
@@ -26,7 +26,7 @@ const StyledInput = styled.input<IInput>`
         `}
 `;
 
-interface IInput {
+interface IInput extends ISpaceTypes {
     value: any;
     componentSize: ComponentSizesTypes;
     mask?: MaskTypes;

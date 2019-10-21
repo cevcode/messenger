@@ -5,7 +5,8 @@ import {
     ButtonColorTypes,
     ComponentSizesTypes,
     DirectionTypes,
-    JustifyContentTypes, AlignItemsTypes,
+    JustifyContentTypes,
+    AlignItemsTypes,
 } from './enums';
 
 export const theme = {
@@ -19,7 +20,7 @@ export const theme = {
     },
 
     globals: {
-      height: '44px',
+        height: '44px',
     },
 
     jc: {
@@ -84,16 +85,16 @@ export const theme = {
 
     position: {
         left: `
-            text-align: left;
+            justify-content: left;
         `,
         right: `
-            text-align: right;
+            justify-content: right;
         `,
         center: `
-            text-align: center;
+            justify-content: center;
         `,
         default: `
-            text-align: left;
+            justify-content: left;
         `,
     },
 
@@ -107,15 +108,15 @@ export const theme = {
         l: `
             width: 240px;
         `,
-        default: `
+        full: `
             width: 100%;
+        `,
+        default: `
+            width: 180px;
         `,
     },
 
     weight: {
-        300: `
-            font-weight: 300;
-        `,
         400: `
             font-weight: 400;
         `,
@@ -127,6 +128,9 @@ export const theme = {
         `,
         700: `
             font-weight: 700;
+        `,
+        800: `
+            font-weight: 800;
         `,
         default: `
             font-weight: 400;
@@ -169,15 +173,15 @@ export const theme = {
         `,
         default: `
           background-color: #2270FF;
-          color: #fff';
+          color: #fff;
         `,
         white: `
           background-color: #fff;
-          color: #000';
+          color: #000;
         `,
         black: `
           background-color: #000;
-          color: #fff';
+          color: #fff;
         `,
     },
 };
@@ -195,34 +199,108 @@ export const space = (props: any) => ({
     paddingRight: props.paddingRight || '',
 });
 
-export const weight = (props: { weight: WeightTypes }) => {
-    return theme.weight[props.weight];
+export const weight = (props: { weight?: WeightTypes }) => {
+    if (props.weight) {
+        return theme.weight[props.weight];
+    }
+    return theme.weight.default;
 };
 
-export const fontSize = (props: { fontSize: FontSizeTypes }) => {
-    return theme.fontSizes[props.fontSize];
+export const fontSize = (props: { fontSize?: FontSizeTypes }) => {
+    if (props.fontSize) {
+        return theme.fontSizes[props.fontSize];
+    }
+    return theme.fontSizes.default;
 };
 
-export const align = (props: { position: PositionTypes }) => {
-    return theme.position[props.position];
+export const align = (props: { position?: PositionTypes }) => {
+    if (props.position) {
+        return theme.position[props.position];
+    }
+    return theme.position.default;
 };
 
-export const buttonColor = (props: { buttonColor: ButtonColorTypes }) => {
-    return theme.buttonColors[props.buttonColor];
+export const buttonColor = (props: { buttonColor?: ButtonColorTypes }) => {
+    if (props.buttonColor) {
+        return theme.buttonColors[props.buttonColor];
+    }
+    return theme.buttonColors.default;
 };
 
-export const componentSize = (props: { componentSize: ComponentSizesTypes }) => {
-    return theme.componentSizes[props.componentSize];
+export const componentSize = (props: { componentSize?: ComponentSizesTypes }) => {
+    if (props.componentSize) {
+        return theme.componentSizes[props.componentSize];
+    }
+    return theme.componentSizes.default;
 };
 
-export const direction = (props: { direction: DirectionTypes }) => {
-    return theme.direction[props.direction];
+export const direction = (props: { direction?: DirectionTypes }) => {
+    if (props.direction) {
+        return theme.direction[props.direction];
+    }
+    return theme.direction.default;
 };
 
-export const jc = (props: { jc: JustifyContentTypes }) => {
-    return theme.jc[props.jc];
+export const jc = (props: { jc?: JustifyContentTypes }) => {
+    if (props.jc) {
+        return theme.jc[props.jc];
+    }
+    return theme.jc.default;
 };
 
-export const ai = (props: { ai: AlignItemsTypes }) => {
-    return theme.ai[props.ai];
+export const ai = (props: { ai?: AlignItemsTypes }) => {
+    if (props.ai) {
+        return theme.ai[props.ai];
+    }
+    return theme.ai.default;
+};
+
+const fontsConfig = [
+    {
+        name: 'Montserrat',
+        src: 'Montserrat/montserrat-400',
+        fontWeight: 400,
+    },
+    {
+        name: 'Montserrat',
+        src: 'Montserrat/montserrat-500',
+        fontWeight: 500,
+    },
+    {
+        name: 'Montserrat',
+        src: 'Montserrat/montserrat-600',
+        fontWeight: 600,
+    },
+    {
+        name: 'Montserrat',
+        src: 'Montserrat/montserrat-700',
+        fontWeight: 700,
+    },
+    {
+        name: 'Montserrat',
+        src: 'Montserrat/montserrat-800',
+        fontWeight: 800,
+    },
+];
+
+function fontFace(name, src, fontWeight) {
+    return `
+        @font-face{
+            font-family: '${name}';
+            font-style: normal;
+            font-weight: ${fontWeight};
+            src: url(${require('../../public/fonts/' + src + '.eot')});
+            src: url(${require('../../public/fonts/' + src + '.eot')}?#iefix) format('embedded-opentype'),
+                 url(${require('../../public/fonts/' + src + '.woff')}) format('woff'),
+                 url(${require('../../public/fonts/' + src + '.ttf')}) format('truetype'),
+                 url(${require('../../public/fonts/' + src + '.svg')}#${name}) format('svg');
+        }
+    `;
+}
+
+export const withFonts = () => {
+    fontsConfig.map(item => {
+        const { name, src, fontWeight } = item;
+        return fontFace(name, src, fontWeight);
+    });
 };
