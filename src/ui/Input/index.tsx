@@ -8,11 +8,12 @@ import { Icon } from 'ui/Icon';
 
 const StyledField = styled.div`
     position: relative;
+    ${space};
+    width: 100%;
 `;
 
 const StyledInput = styled.input<IInput>`
     ${componentSize};
-    ${space};
     ${theme.fonts.default};
     ${theme.fontSizes.default};
     height: ${theme.globals.height};
@@ -103,7 +104,7 @@ const Input: React.FC<IInput> = ({
         );
     }
     return (
-        <StyledField>
+        <StyledField {...props}>
             {getIcon(icon, color)}
             <StyledInput
                 icon={icon}

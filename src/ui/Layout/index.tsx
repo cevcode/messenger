@@ -5,17 +5,15 @@ import { ai, direction, jc, space } from 'helpers/theme';
 
 const StyledLayout = styled.div<ILayout>`
     ${space};
-    ${jc};
-    ${ai};
     display: flex;
     position: relative;
-    flex-direction: row;
     box-sizing: border-box;
-    justify-content: flex-start;
-    align-items: stretch;
     width: 100%;
     height: auto;
+    min-height: ${props => (props.height ? props.height : 'auto')};
     ${direction};
+    ${jc};
+    ${ai};
     ${props =>
         props.noFlex &&
         css`
@@ -27,12 +25,13 @@ interface ILayout extends ISpaceTypes {
     direction?: DirectionTypes;
     jc?: JustifyContentTypes;
     ai?: AlignItemsTypes;
+    height?: string;
     noFlex?: boolean;
 }
 
-const Index: React.FC<ILayout> = ({ direction, jc, ai, noFlex, children, ...props }) => {
+const Layout: React.FC<ILayout> = ({ direction, jc, ai, noFlex, children, height, ...props }) => {
     return (
-        <StyledLayout direction={direction} jc={jc} ai={ai} noFlex={noFlex} {...props}>
+        <StyledLayout direction={direction} jc={jc} ai={ai} noFlex={noFlex} height={height} {...props}>
             {children}
         </StyledLayout>
     );
@@ -41,18 +40,18 @@ const Index: React.FC<ILayout> = ({ direction, jc, ai, noFlex, children, ...prop
 const Row: React.FC<ILayout> = props => {
     const { children } = props;
     return (
-        <Index {...props} direction={DirectionTypes.row}>
+        <Layout {...props} direction={DirectionTypes.row}>
             {children}
-        </Index>
+        </Layout>
     );
 };
 
 const Column: React.FC<ILayout> = props => {
     const { children } = props;
     return (
-        <Index {...props} direction={DirectionTypes.column}>
+        <Layout {...props} direction={DirectionTypes.column}>
             {children}
-        </Index>
+        </Layout>
     );
 };
 

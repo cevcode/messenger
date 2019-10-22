@@ -1,9 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { theme } from 'helpers/theme';
 import { ColorTypes } from 'helpers/enums';
 
-const StyledIcon = styled.i<any>`
+const StyledIcon = styled.i<IIcon>`
   font-family: 'Material', sans-serif;
   font-weight: normal;
   font-style: normal;
@@ -40,12 +39,13 @@ const StyledIcon = styled.i<any>`
 
 interface IIcon {
     size?: string;
-    name: string;
+    name?: string;
     color?: ColorTypes;
     wrapped?: boolean;
 }
 const Icon: React.FC<IIcon> = ({ name, size, color, wrapped }) => {
-    return <StyledIcon size={size} color={color} wrapped={wrapped}>{name}</StyledIcon>;
+    const icon = name ? name : 'clear';
+    return <StyledIcon size={size} color={color} wrapped={wrapped}>{icon}</StyledIcon>;
 };
 
 export { Icon };

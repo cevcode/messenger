@@ -1,10 +1,11 @@
 import React from 'react';
 import { useField } from 'formik';
-import { FieldWrapperHOC } from 'widgets/Fields/FieldWrapperHOC';
+import { FieldWrapperHOC, IFieldWrapperHOC } from 'widgets/Fields/FieldWrapperHOC';
 import { Input } from 'ui/Input';
 import { Description } from 'ui/Description';
+import { ColorTypes } from 'helpers/enums';
 
-const getComponentByType = type => {
+const getComponentByType = (type: string) => {
     switch (type) {
         default:
         case 'email':
@@ -17,10 +18,38 @@ const getComponentByType = type => {
     }
 };
 
-const Field = ({ label, Component, type, ...props }) => {
-    const [field, meta] = useField(props.name);
-    const error = meta.touch && meta.error ? meta.error : '';
-    return <FieldWrapperHOC Component={getComponentByType(type)} label={label} error={error} {...field} {...props} />;
+interface IField extends IFieldWrapperHOC {
+}
+
+function fieldStateColor(color, error, valid){
+    if(error) {
+        return ColorTypes.red;
+    }
+    if(valid) {
+        return ColorTypes.green;
+    }
+    return color;
+}
+
+const Field: React.FC<IField> = ({ icon, color, label, type, placeholder, name, ...props }) => {
+    const [field, meta] = useField(name);
+    const { touch, error } = meta;
+    const errorMessage = touch && error ? error : null;
+    const valid = touch && !error;
+    return (
+        <FieldWrapperHOC
+            icon={icon}
+            color={fieldStateColor(color, errorMessage, valid)}
+            label={label}
+            type={type}
+            placeholder={placeholder}
+            name={name}
+            Component={getComponentByType(type)}
+            error={errorMessage}
+            {...props}
+            {...field}
+        />
+    );
 };
 
 export { Field };

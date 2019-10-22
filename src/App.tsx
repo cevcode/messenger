@@ -1,10 +1,10 @@
 import React from 'react';
-import { Auth } from 'widgets/Auth';
+import { AuthPage } from 'modules/AuthPage';
 
 const App: React.FC = () => {
     return (
         <div className="App">
-            <Auth />
+            <AuthPage />
         </div>
     );
 };

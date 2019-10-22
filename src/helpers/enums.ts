@@ -29,7 +29,7 @@ export enum ButtonColorTypes {
     red = 'red',
     green = 'green',
     default = 'default',
-    undefined = 'default',
+    fill = 'fill',
 }
 
 export enum ComponentSizesTypes {

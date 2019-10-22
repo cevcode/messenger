@@ -21,7 +21,7 @@ export const theme = {
     },
 
     fonts: {
-      default: `
+        default: `
         font-family: 'Montserrat', sans-serif
        `,
     },
@@ -56,25 +56,25 @@ export const theme = {
 
     ai: {
         flexStart: `
-            justify-content: flex-start;
+            align-items: flex-start;
         `,
         center: `
-            justify-content: center;
+            align-items: center;
         `,
         stretch: `
-            justify-content: stretch;
+            align-items: stretch;
         `,
         flexEnd: `
-            justify-content: flex-end;
+            align-items: flex-end;
         `,
         spaceBetween: `
-            justify-content: space-between;
+            align-items: space-between;
         `,
         spaceAround: `
-            justify-content: space-around;
+            align-items: space-around;
         `,
         default: `
-            justify-content: flex-start;
+            align-items: flex-start;
         `,
     },
 
@@ -190,6 +190,10 @@ export const theme = {
           background-color: #000;
           color: #fff;
         `,
+        fill: `
+          background-color: transparent;
+          color: #919191;
+        `,
     },
 };
 
@@ -301,11 +305,11 @@ function fontFace(name: string, src: string, fontWeight: number) {
             font-family: '${name}';
             font-style: normal;
             font-weight: ${fontWeight};
-            src: url(${('/fonts/' + src + '.eot')});
-            src: url(${('/fonts/' + src + '.eot')}?#iefix) format('embedded-opentype'),
-                 url(${('/fonts/' + src + '.woff')}) format('woff'),
-                 url(${('/fonts/' + src + '.ttf')}) format('truetype'),
-                 url(${('/fonts/' + src + '.svg')}#${name}) format('svg');
+            src: url(${'/fonts/' + src + '.eot'});
+            src: url(${'/fonts/' + src + '.eot'}?#iefix) format('embedded-opentype'),
+                 url(${'/fonts/' + src + '.woff'}) format('woff'),
+                 url(${'/fonts/' + src + '.ttf'}) format('truetype'),
+                 url(${'/fonts/' + src + '.svg'}#${name}) format('svg');
         }
     `;
 }
@@ -317,10 +321,10 @@ export const withFonts = () => {
     });
 };
 
-export const GlobalStyle  = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   ${withFonts()};
   body {
-    background-color: #e0e3ec;
+    background-color: ${theme.colors.white};
     ${theme.fonts.default};
     ${theme.weight.default};
     
