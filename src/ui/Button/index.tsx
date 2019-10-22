@@ -12,6 +12,7 @@ interface IButton extends ISpaceTypes {
 
 const StyledButton = styled.button<IButton>`
     ${theme.fontSizes.default};
+    ${theme.fonts.default};
     ${componentSize};
     ${buttonColor};
     ${space};

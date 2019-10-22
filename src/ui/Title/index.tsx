@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { PositionTypes, ColorTypes, FontSizeTypes, WeightTypes, ISpaceTypes } from 'helpers/enums';
-import { space, weight, fontSize, align } from 'helpers/theme';
+import { space, weight, fontSize, align, theme } from 'helpers/theme';
 
 const StyledTitle = styled.h2<ITitle>`
     ${space};
     ${weight};
     ${fontSize};
     ${align};
+    ${theme.fonts.default};
     display: flex;
-    font-family: 'Montserrat', sans-serif;
     width: auto;
     color: ${props => props.color};
     text-transform: ${props => props.uppercase ? 'uppercase' : 'none'};

@@ -8,6 +8,7 @@ import {
     JustifyContentTypes,
     AlignItemsTypes,
 } from './enums';
+import { createGlobalStyle } from 'styled-components';
 
 export const theme = {
     colors: {
@@ -17,6 +18,12 @@ export const theme = {
         red: '#ff363a',
         green: '#56ff2c',
         grey: '#919191',
+    },
+
+    fonts: {
+      default: `
+        font-family: 'Montserrat', sans-serif
+       `,
     },
 
     globals: {
@@ -281,26 +288,45 @@ const fontsConfig = [
         src: 'Montserrat/montserrat-800',
         fontWeight: 800,
     },
+    {
+        name: 'Material',
+        src: 'Material/material',
+        fontWeight: 400,
+    },
 ];
 
-function fontFace(name, src, fontWeight) {
+function fontFace(name: string, src: string, fontWeight: number) {
     return `
         @font-face{
             font-family: '${name}';
             font-style: normal;
             font-weight: ${fontWeight};
-            src: url(${require('../../public/fonts/' + src + '.eot')});
-            src: url(${require('../../public/fonts/' + src + '.eot')}?#iefix) format('embedded-opentype'),
-                 url(${require('../../public/fonts/' + src + '.woff')}) format('woff'),
-                 url(${require('../../public/fonts/' + src + '.ttf')}) format('truetype'),
-                 url(${require('../../public/fonts/' + src + '.svg')}#${name}) format('svg');
+            src: url(${('/fonts/' + src + '.eot')});
+            src: url(${('/fonts/' + src + '.eot')}?#iefix) format('embedded-opentype'),
+                 url(${('/fonts/' + src + '.woff')}) format('woff'),
+                 url(${('/fonts/' + src + '.ttf')}) format('truetype'),
+                 url(${('/fonts/' + src + '.svg')}#${name}) format('svg');
         }
     `;
 }
 
 export const withFonts = () => {
-    fontsConfig.map(item => {
+    return fontsConfig.map(item => {
         const { name, src, fontWeight } = item;
         return fontFace(name, src, fontWeight);
     });
 };
+
+export const GlobalStyle  = createGlobalStyle`
+  ${withFonts()};
+  body {
+    background-color: #e0e3ec;
+    ${theme.fonts.default};
+    ${theme.weight.default};
+    
+  }
+  h1,h2,h3,h4,h5,h6,p,ol,ul {
+    padding: 0;
+    margin: 0;
+  }
+`;

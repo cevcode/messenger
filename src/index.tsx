@@ -3,16 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { App } from './App';
 import * as serviceWorker from './serviceWorker';
-import { createGlobalStyle } from 'styled-components';
-import { withFonts } from 'helpers/theme';
-
-const GlobalStyle  = createGlobalStyle`
-// @ts-ignore
-  ${withFonts};
-  body {
-    background-color: #fff;
-  }
-`;
+import { GlobalStyle } from 'helpers/theme';
 
 ReactDOM.render(
     <BrowserRouter>

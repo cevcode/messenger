@@ -1,39 +1,52 @@
 import * as React from 'react';
 import MaskedInput from 'react-text-mask';
 import { MaskTypes } from './helpers';
-import { ComponentSizesTypes, InputTypes, ISpaceTypes } from 'helpers/enums';
+import { ColorTypes, ComponentSizesTypes, InputTypes, ISpaceTypes } from 'helpers/enums';
 import styled, { css } from 'styled-components';
 import { componentSize, space, theme } from 'helpers/theme';
+import { Icon } from 'ui/Icon';
+
+const StyledField = styled.div`
+    position: relative;
+`;
 
 const StyledInput = styled.input<IInput>`
     ${componentSize};
     ${space};
+    ${theme.fonts.default};
     ${theme.fontSizes.default};
     height: ${theme.globals.height};
     width: 100%;
-    border: 1px solid ${theme.colors.blue};
+    border-radius: 5px;
+    border: 1px solid ${props => props.color};
     padding: 0 20px;
     box-sizing: border-box;
     outline: 0;
+
     ::placeholder {
         color: ${theme.colors.grey};
     }
+    
     ${props =>
         props.disabled &&
         css`
             background: ${theme.colors.grey};
             color: ${theme.colors.white};
         `}
+        ${props =>
+        props.icon &&
+        css`
+            padding-left: 44px;
+        `}
 `;
 
 interface IInput extends ISpaceTypes {
     value: any;
-    componentSize: ComponentSizesTypes;
+    componentSize?: ComponentSizesTypes;
     mask?: MaskTypes;
     onBlur?: () => void;
-    onClick?: () => void;
     onFocus?: () => void;
-    onChange?: (e: any) => void;
+    onFieldChange?: (e: any) => void;
     disabled?: boolean;
     className?: string;
     placeholder: string;
@@ -41,16 +54,23 @@ interface IInput extends ISpaceTypes {
     name: string;
     id: string;
     autoComplete?: string;
-    onEnterPress: () => void;
+    icon?: string;
+    color: ColorTypes;
+}
+
+function getIcon(icon, color) {
+    if (icon) {
+        return <Icon name={icon} color={color} wrapped />;
+    }
+    return null;
 }
 
 const Input: React.FC<IInput> = ({
     value,
     mask,
     onBlur,
-    onClick,
     onFocus,
-    onChange,
+    onFieldChange,
     disabled,
     componentSize,
     placeholder,
@@ -58,53 +78,50 @@ const Input: React.FC<IInput> = ({
     name,
     id,
     autoComplete,
-    onEnterPress,
+    icon,
+    color,
     ...props
 }) => {
-    const _handleKeyPress = (e: { key: string }) => {
-        if (e.key === 'Enter') {
-            onEnterPress();
-        }
-    };
     if (mask) {
         return (
             <MaskedInput
                 guide
-                onEnterPress={_handleKeyPress}
                 type={type}
                 name={name}
                 // @ts-ignore
                 mask={MaskTypes[mask]}
                 value={value}
                 onBlur={onBlur}
-                onClick={onClick}
                 onFocus={onFocus}
                 id={id}
                 autoComplete={autoComplete}
                 disabled={disabled}
                 placeholder={placeholder}
                 placeholderChar={'\u2000'}
-                onChange={onChange}
+                onChange={onFieldChange}
             />
         );
     }
     return (
-        <StyledInput
-            componentSize={componentSize}
-            type={type}
-            id={id}
-            name={name}
-            value={value}
-            onBlur={onBlur}
-            onClick={onClick}
-            onFocus={onFocus}
-            onEnterPress={onEnterPress}
-            disabled={disabled}
-            autoComplete={autoComplete}
-            placeholder={placeholder}
-            onChange={onChange}
-            {...props}
-        />
+        <StyledField>
+            {getIcon(icon, color)}
+            <StyledInput
+                icon={icon}
+                componentSize={componentSize}
+                type={type}
+                id={id}
+                color={color}
+                name={name}
+                value={value}
+                onBlur={onBlur}
+                onFocus={onFocus}
+                disabled={disabled}
+                autoComplete={autoComplete}
+                placeholder={placeholder}
+                onChange={() => onFieldChange}
+                {...props}
+            />
+        </StyledField>
     );
 };
 
