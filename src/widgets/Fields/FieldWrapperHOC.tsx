@@ -1,18 +1,11 @@
 import React from 'react';
 import { Column } from 'ui/Layout';
 import { Description } from 'ui/Description';
-import { ColorTypes, FontSizeTypes, ISpaceTypes } from 'helpers/enums';
+import { ColorTypes, FontSizeTypes } from 'helpers/enums';
+import { IField } from 'widgets/Fields/index';
 
-export interface IFieldWrapperHOC extends ISpaceTypes {
-    color?: ColorTypes;
+interface IFieldWrapperHOC extends IField {
     Component: React.ElementType<any>;
-    label?: string | false;
-    field?: any;
-    error?: string | null;
-    type: string;
-    placeholder?: string | number;
-    icon?: string;
-    name: string;
 }
 
 interface IRenderComponent extends IFieldWrapperHOC {}
@@ -20,7 +13,7 @@ interface IRenderComponent extends IFieldWrapperHOC {}
 const RenderComponent: React.FC<IRenderComponent> = ({ Component, name, ...props }) => {
     return <Component name={name} {...props} />;
 };
-// @ts-ignore
+
 const FieldWrapperHOC: React.FC<IFieldWrapperHOC> = ({
     Component,
     color,

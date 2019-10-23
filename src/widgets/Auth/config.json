@@ -1,0 +1,54 @@
+{
+  "signIn": [
+    {
+      "title": "Войти в аккаунт",
+      "description": "Пожалуйста, войдите в свой аккаунт",
+      "fields": [
+        {
+          "type": "text",
+          "icon": "account_circle",
+          "placeholder": "Введите логин",
+          "name": "login"
+        },
+        {
+          "type": "email",
+          "icon": "email",
+          "placeholder": "Введите email",
+          "name": "email"
+        },
+        {
+          "type": "password",
+          "icon": "lock",
+          "placeholder": "Пароль",
+          "name": "password"
+        },
+        {
+          "type": "password",
+          "icon": "lock",
+          "placeholder": "Пароль",
+          "name": "repeatPassword"
+        }
+      ]
+    }
+  ],
+  "signUp": [
+    {
+      "title": "Регистрация",
+      "description": "Для входа в чат вам нужно зарегестрироваться",
+      "fields": [
+        {
+          "type": "text",
+          "icon": "account_circle",
+          "placeholder": "Введите логин",
+          "name": "login"
+        },
+        {
+          "type": "password",
+          "icon": "lock",
+          "placeholder": "Пароль",
+          "name": "password"
+        }
+      ]
+    }
+  ]
+}

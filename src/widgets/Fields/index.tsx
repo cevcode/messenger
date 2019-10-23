@@ -1,9 +1,9 @@
 import React from 'react';
 import { useField } from 'formik';
-import { FieldWrapperHOC, IFieldWrapperHOC } from 'widgets/Fields/FieldWrapperHOC';
+import { FieldWrapperHOC } from 'widgets/Fields/FieldWrapperHOC';
 import { Input } from 'ui/Input';
 import { Description } from 'ui/Description';
-import { ColorTypes } from 'helpers/enums';
+import { ColorTypes, ISpaceTypes } from 'helpers/enums';
 
 const getComponentByType = (type: string) => {
     switch (type) {
@@ -18,7 +18,15 @@ const getComponentByType = (type: string) => {
     }
 };
 
-interface IField extends IFieldWrapperHOC {
+export interface IField extends ISpaceTypes {
+    color?: ColorTypes;
+    label?: string | false;
+    field?: any;
+    error?: string | null;
+    type: string;
+    placeholder?: string | number;
+    icon?: string;
+    name: string;
 }
 
 function fieldStateColor(color, error, valid){

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import Ripples from 'react-ripples';
 import { ButtonColorTypes, ComponentSizesTypes, ISpaceTypes } from 'helpers/enums';
 import { buttonColor, componentSize, space, theme } from 'helpers/theme';
 
@@ -14,8 +15,8 @@ const StyledButton = styled.button<IButton>`
     ${theme.fontSizes.default};
     ${theme.fonts.default};
     ${componentSize};
+    cursor: pointer;
     ${buttonColor};
-    ${space};
     display: flex;
     align-items: center;
     height: ${theme.globals.height};
@@ -24,25 +25,35 @@ const StyledButton = styled.button<IButton>`
     border-radius: 5px;
     justify-content: center;
     outline: none;
+    :hover {
+      filter: grayscale(0.2);
+      transition: 0.4s ease;
+    }
     ${props =>
-    props.disabled &&
-    css`
+        props.disabled &&
+        css`
             background: ${theme.colors.grey};
             color: ${theme.colors.white};
         `}
 `;
 
+const StyledRipples = styled(Ripples)`
+  width: 100%;
+  ${space};
+`;
+
 const Button: React.FC<IButton> = ({ children, buttonColor, componentSize, onClick, disabled, ...props }) => {
     return (
-        <StyledButton
-            componentSize={componentSize}
-            buttonColor={buttonColor}
-            onClick={onClick}
-            disabled={disabled}
-            {...props}
-        >
-            {children}
-        </StyledButton>
+        <StyledRipples {...props}>
+            <StyledButton
+                componentSize={componentSize}
+                buttonColor={buttonColor}
+                onClick={onClick}
+                disabled={disabled}
+            >
+                {children}
+            </StyledButton>
+        </StyledRipples>
     );
 };
 
