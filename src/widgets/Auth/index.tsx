@@ -13,7 +13,7 @@ import {
     WeightTypes,
 } from 'helpers/enums';
 import { Field } from 'widgets/Fields';
-import { SignupSchema } from 'validations';
+import { SigninSchema, SignupSchema } from 'validations';
 import config from './config.json';
 
 interface IAuthFields {
@@ -32,16 +32,25 @@ const RenderFields: React.FC<IRenderFields> = ({ fields }): any => {
         const { icon, type, placeholder, name } = item;
         return (
             <Field
+                key={name}
                 icon={icon}
                 color={ColorTypes.blue}
                 type={type}
                 placeholder={placeholder}
-                marginTop="20px"
+                mtop="20px"
                 name={name}
             />
         );
     });
 };
+
+function getButtonText(authType: string) {
+    const textArr = ['Войти', 'Зарегистрироваться'];
+    if(authType === 'signUp') {
+        return textArr.reverse();
+    }
+    return textArr;
+}
 
 const Auth = () => {
     const [authType, setAuthType] = useState('signIn');
@@ -49,11 +58,18 @@ const Auth = () => {
         alert(JSON.stringify(values, null, 2));
         actions.setSubmitting(false);
     };
-    return config[authType].map(data => (
-        <Box padding="40px" width="450px">
+    const handleAuthType = authType => {
+        if (authType === 'signIn') {
+            setAuthType('signUp');
+        } else {
+            setAuthType('signIn');
+        }
+    };
+    return config[authType].map((data, i) => (
+        <Box padding="40px" width="450px" key={i}>
             <Formik
-                initialValues={{ email: '', password: '', login: '' }}
-                validationSchema={SignupSchema}
+                initialValues={{ email: '', password: '', login: '', repeatPassword: '' }}
+                validationSchema={authType === 'signIn' ? SignupSchema : SigninSchema}
                 onSubmit={(values, actions) => onSubmit(values, actions)}
                 render={(props: FormikProps<any>) => {
                     const { title, description, fields } = data;
@@ -67,19 +83,21 @@ const Auth = () => {
                             </Description>
                             <RenderFields fields={fields} />
                             <Button
-                                marginTop="40px"
+                                type="submit"
+                                mtop="40px"
                                 componentSize={ComponentSizesTypes.full}
                                 onClick={props.handleSubmit}
                             >
-                                Войти
+                                {getButtonText(authType)[0]}
                             </Button>
                             <Button
-                                marginTop="20px"
+                                type="button"
+                                mtop="20px"
                                 buttonColor={ButtonColorTypes.fill}
                                 componentSize={ComponentSizesTypes.full}
-                                onClick={props.handleSubmit}
+                                onClick={() => handleAuthType(authType)}
                             >
-                                Зарегистрироваться
+                                {getButtonText(authType)[1]}
                             </Button>
                         </form>
                     );

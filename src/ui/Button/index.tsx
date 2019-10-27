@@ -9,6 +9,7 @@ interface IButton extends ISpaceTypes {
     componentSize?: ComponentSizesTypes;
     onClick: (...args: any) => void;
     disabled?: boolean;
+    type: 'submit' | 'button';
 }
 
 const StyledButton = styled.button<IButton>`
@@ -42,10 +43,11 @@ const StyledRipples = styled(Ripples)`
   ${space};
 `;
 
-const Button: React.FC<IButton> = ({ children, buttonColor, componentSize, onClick, disabled, ...props }) => {
+const Button: React.FC<IButton> = ({ children, type, buttonColor, componentSize, onClick, disabled, ...props }) => {
     return (
         <StyledRipples {...props}>
             <StyledButton
+                type={type}
                 componentSize={componentSize}
                 buttonColor={buttonColor}
                 onClick={onClick}

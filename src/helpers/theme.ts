@@ -199,15 +199,15 @@ export const theme = {
 
 export const space = (props: any) => ({
     margin: props.margin || '',
-    marginBottom: props.marginBottom || '',
-    marginTop: props.marginTop || '',
-    marginLeft: props.marginLeft || '',
-    marginRight: props.marginRight || '',
+    marginBottom: props.mbottom || '',
+    marginTop: props.mtop || '',
+    marginLeft: props.mleft || '',
+    marginRight: props.mright || '',
     padding: props.padding || '',
-    paddingBottom: props.paddingBottom || '',
-    paddingTop: props.paddingTop || '',
-    paddingLeft: props.paddingLeft || '',
-    paddingRight: props.paddingRight || '',
+    paddingBottom: props.pbottom || '',
+    paddingTop: props.ptop || '',
+    paddingLeft: props.pleft || '',
+    paddingRight: props.pright || '',
 });
 
 export const weight = (props: { weight?: WeightTypes }) => {

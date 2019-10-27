@@ -25,7 +25,7 @@
         {
           "type": "password",
           "icon": "lock",
-          "placeholder": "Пароль",
+          "placeholder": "Повторите пароль",
           "name": "repeatPassword"
         }
       ]

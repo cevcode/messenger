@@ -46,7 +46,7 @@ const FieldWrapperHOC: React.FC<IFieldWrapperHOC> = ({
                 {...props}
             />
             {error && (
-                <Description marginTop="10px" fontSize={FontSizeTypes.default} color={ColorTypes.red}>
+                <Description mtop="10px" fontSize={FontSizeTypes.default} color={ColorTypes.red}>
                     {error}
                 </Description>
             )}

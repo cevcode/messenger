@@ -9,6 +9,12 @@ const passwordValidation = () => {
         .required('Обязательное поле');
 };
 
+const repeatPasswordValidation = () => {
+    return Yup.string()
+        .equalTo(Yup.ref('password'), 'Пароли не совпадают')
+        .required('Обязательное поле');
+};
+
 const emailValidation = () => {
     return Yup.string()
         .email('Неверный формат')
@@ -23,7 +29,30 @@ const loginValidation = () => {
         .required('Обязательное поле');
 };
 
+function equalTo(ref: any, msg: any) {
+    return Yup.mixed().test({
+        name: 'equalTo',
+        exclusive: false,
+        message: msg || `${ref.path} must be the same as ${ref}`,
+        params: {
+            reference: ref.path,
+        },
+        test: function(value: any) {
+            return value === this.resolve(ref);
+        },
+    });
+}
+Yup.addMethod(Yup.string, 'equalTo', equalTo);
+
+
 export const SignupSchema = Yup.object().shape({
+    email: emailValidation(),
+    login: loginValidation(),
+    password: passwordValidation(),
+    repeatPassword: repeatPasswordValidation(),
+});
+
+export const SigninSchema = Yup.object().shape({
     email: emailValidation(),
     login: loginValidation(),
     password: passwordValidation()

@@ -92,13 +92,13 @@ export enum InputTypes {
 
 export interface ISpaceTypes {
     margin?: string,
-    marginBottom?: string
-    marginTop?: string
-    marginLeft?: string
-    marginRight?: string
+    mbottom?: string
+    mtop?: string
+    mleft?: string
+    mright?: string
     padding?: string
-    paddingBottom?: string
-    paddingTop?: string
-    paddingLeft?: string
-    paddingRight?: string
+    pbottom?: string
+    ptop?: string
+    pleft?: string
+    pright?: string
 }
