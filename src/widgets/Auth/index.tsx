@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Formik, FormikProps } from 'formik';
 import { Box } from 'ui/Box';
 import { Title } from 'ui/Title';
@@ -15,6 +15,7 @@ import {
 import { Field } from 'widgets/Fields';
 import { SigninSchema, SignupSchema } from 'validations';
 import config from './config.json';
+import { History } from 'history';
 
 interface IAuthFields {
     icon: string;
@@ -52,19 +53,24 @@ function getButtonText(authType: string) {
     return textArr;
 }
 
-const Auth = () => {
-    const [authType, setAuthType] = useState('signIn');
+interface IAuth {
+    authType: 'signIn' | 'signOut';
+    history: History
+}
+
+const Auth: React.FC<IAuth> = ({ authType, history }) => {
     const onSubmit = (values, actions) => {
         alert(JSON.stringify(values, null, 2));
         actions.setSubmitting(false);
     };
+
     const handleAuthType = authType => {
-        if (authType === 'signIn') {
-            setAuthType('signUp');
-        } else {
-            setAuthType('signIn');
+        if(authType === 'signIn') {
+            return history.push('/register');
         }
+        return history.push('/login');
     };
+
     return config[authType].map((data, i) => (
         <Box padding="40px" width="450px" key={i}>
             <Formik
