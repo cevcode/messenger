@@ -325,6 +325,8 @@ export const GlobalStyle = createGlobalStyle`
   ${withFonts()};
   body {
     background-color: ${theme.colors.white};
+    margin: 0;
+    padding: 0;
     ${theme.fonts.default};
     ${theme.weight.default};
     

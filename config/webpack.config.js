@@ -306,6 +306,7 @@ module.exports = function(webpackEnv) {
         helpers: path.resolve('./src/helpers'),
         modules: path.resolve('./src/modules'),
         validations: path.resolve('./src/validations'),
+        models: path.resolve('./src/models'),
         // store: path.resolve('./src/store'),
         // models: path.resolve('./src/models'),
         // statics: path.resolve('./src/statics'),

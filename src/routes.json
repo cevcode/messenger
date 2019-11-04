@@ -1,0 +1,24 @@
+[
+    {
+        "path": ["/", "/login"],
+        "component": "AuthPage",
+        "exact": true,
+        "data": {
+            "authType": "signIn"
+        }
+    },
+    {
+        "path": "/register",
+        "component": "AuthPage",
+        "exact": true,
+        "data": {
+            "authType": "signUp"
+        }
+    },
+    {
+        "path": "/home",
+        "component": "HomePage",
+        "exact": true,
+        "data": null
+    }
+]

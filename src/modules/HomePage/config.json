@@ -1,0 +1,16 @@
+{
+  "user": {
+    "id": "1",
+    "name": "Evgeniy",
+    "surName": "Kobernik",
+    "email": "kobernikev@gmail.com",
+    "photo": "https://instagram.ftgd2-1.fna.fbcdn.net/vp/59438f66bd3db1c9a8a35fcb67ba9828/5E4231E4/t51.2885-19/s320x320/33404980_578629875854724_8075651071923453952_n.jpg?_nc_ht=instagram.ftgd2-1.fna.fbcdn.net",
+    "isOnline": true
+  },
+  "message": {
+    "text": "hello its me, i was here 5 minutes ago asd asd asda sdas d",
+    "date": "18:02",
+    "status": "sending"
+  },
+  "isMe": true
+}

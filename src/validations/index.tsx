@@ -21,6 +21,12 @@ const emailValidation = () => {
         .required('Обязательное поле')
 };
 
+const textValidation = () => {
+    return Yup.string()
+        .max(16, 'Слишком длинное имя')
+        .required('Обязательное поле')
+};
+
 const loginValidation = () => {
     return Yup.string()
         .min(6, 'Логин должен содержать минимум 6 символов')
@@ -46,6 +52,8 @@ Yup.addMethod(Yup.string, 'equalTo', equalTo);
 
 
 export const SignupSchema = Yup.object().shape({
+    name: textValidation(),
+    surName: textValidation(),
     email: emailValidation(),
     login: loginValidation(),
     password: passwordValidation(),

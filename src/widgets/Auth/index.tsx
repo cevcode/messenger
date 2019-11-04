@@ -75,7 +75,7 @@ const Auth: React.FC<IAuth> = ({ authType, history }) => {
         <Box padding="40px" width="450px" key={i}>
             <Formik
                 initialValues={{ email: '', password: '', login: '', repeatPassword: '' }}
-                validationSchema={authType === 'signIn' ? SignupSchema : SigninSchema}
+                validationSchema={authType === 'signIn' ? SigninSchema : SignupSchema}
                 onSubmit={(values, actions) => onSubmit(values, actions)}
                 render={(props: FormikProps<any>) => {
                     const { title, description, fields } = data;
