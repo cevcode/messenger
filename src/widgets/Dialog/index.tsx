@@ -5,10 +5,10 @@ import { IUser } from 'models/user';
 import { Photo } from 'widgets/Photo';
 import { Title } from 'ui/Title';
 import { Description } from 'ui/Description';
-import { IMessage, MessageStatus } from 'models/message';
+import { IMessage } from 'models/message';
 import { AlignItemsTypes, ColorTypes, FontSizeTypes, JustifyContentTypes, WeightTypes } from 'helpers/enums';
 import { theme } from 'helpers/theme';
-import { Icon } from 'ui/Icon';
+import { StatusLabel } from 'widgets/StatusLabel';
 
 interface IDialog {
     user: IUser;
@@ -61,32 +61,13 @@ const UnreadLabel = ({ unread, isMe }) => {
     return null;
 };
 
-function getIconByStatus(status) {
-    switch (status) {
-        default:
-        case MessageStatus.sending:
-            return { name: 'access_time', color: ColorTypes.grey };
-        case MessageStatus.sent:
-            return { name: 'done', color: ColorTypes.blue };
-        case MessageStatus.read:
-            return { name: 'done_all', color: ColorTypes.blue };
-    }
-}
-
-const StatusLabel = ({ status, isMe }) => {
-    if (isMe) {
-        return <Icon name={getIconByStatus(status).name} color={getIconByStatus(status).color} size="14px" />;
-    }
-    return null;
-};
-
 const Dialog: React.FC<IDialog> = ({ user, message, unread, isMe }) => {
     const { name, surName } = user;
     const { text, date, status } = message;
     const userFullName = `${name} ${surName}`;
     return (
         <StyledDialog padding="10px" ai={AlignItemsTypes.center} jc={JustifyContentTypes.spaceBetween}>
-            <Photo user={user} />
+            <Photo user={user} checkConnect />
             <StyledContent mleft="10px">
                 <Row jc={JustifyContentTypes.spaceBetween}>
                     <Title weight={WeightTypes.w600} mbottom="3px">

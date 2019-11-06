@@ -18,6 +18,7 @@ export const theme = {
         red: '#ff363a',
         green: '#56ff2c',
         grey: '#919191',
+        lightGrey: '#e0e0e0',
     },
 
     fonts: {

@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { History } from 'history';
 import { Dialog } from 'widgets/Dialog';
-import { Column } from 'ui/Layout';
+import { Column, Row } from 'ui/Layout';
 import config from './config.json';
+import { Message } from 'widgets/Message';
 
-
-const StyledBox = styled(Column)`
-  width: 300px;
+const StyledDialogList = styled(Column)`
+    width: 400px;
 `;
 
 export interface IHomePage {
@@ -15,19 +15,22 @@ export interface IHomePage {
 }
 
 const HomePage: React.FC<IHomePage> = ({ history }) => {
-    const { user, message, isMe }: any = config;
+    const { user, messageList }: any = config;
+    const lastMessage = messageList[messageList.length - 1].message;
     return (
-        <StyledBox>
-            <Dialog user={user} message={message} unread={3} isMe={isMe} />
-            <Dialog user={user} message={message} unread={3} isMe={isMe} />
-            <Dialog user={user} message={message} unread={3} isMe={isMe} />
-            <Dialog user={user} message={message} unread={3} isMe={isMe} />
-            <Dialog user={user} message={message} unread={3} isMe={isMe} />
-            <Dialog user={user} message={message} unread={3} isMe={isMe} />
-            <Dialog user={user} message={message} unread={3} isMe={isMe} />
-            <Dialog user={user} message={message} unread={3} isMe={isMe} />
-            <Dialog user={user} message={message} unread={3} isMe={isMe} />
-        </StyledBox>
+        <Row>
+            <StyledDialogList>
+                <Dialog user={lastMessage.user} message={lastMessage} unread={3} isMe={false} />
+            </StyledDialogList>
+            <Column>
+                {messageList.map(item => {
+                    const { message } = item;
+                    return (
+                        <Message user={message.user} message={message} isMe={message.user.id === user.id} />
+                    )
+                })}
+            </Column>
+        </Row>
     );
 };
 
