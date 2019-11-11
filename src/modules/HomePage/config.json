@@ -7,13 +7,59 @@
     "photo": "https://instagram.ftgd2-1.fna.fbcdn.net/vp/59438f66bd3db1c9a8a35fcb67ba9828/5E4231E4/t51.2885-19/s320x320/33404980_578629875854724_8075651071923453952_n.jpg?_nc_ht=instagram.ftgd2-1.fna.fbcdn.net",
     "isOnline": true
   },
+  "dialogs": [
+    {
+      "id": "be980a03-eaf8-4cbd-b24e-7fbf2abe7b00",
+      "unread": 3,
+      "user": {
+        "id": "2",
+        "name": "Nastio",
+        "surName": "Bushmelito",
+        "email": "anastasio@gmail.com",
+        "photo": "https://media.licdn.com/dms/image/C4D03AQF_hpU8XVffHQ/profile-displayphoto-shrink_800_800/0?e=1578528000&v=beta&t=jtmDYA_KeXqmeTITucgO_4G_d9LvxR1ezG7u45_OFw8",
+        "isOnline": true
+      },
+      "message": {
+        "id": "7d1a7db7-1d63-4f2d-ae66-3df2d028883d",
+        "text": "Ну как дела?",
+        "date": 1573319252,
+        "status": "read",
+        "attachments": null
+      }
+    },
+    {
+      "id": "c1198b84-65ec-45cb-91ac-80cd335dc0af",
+      "unread": 0,
+      "user": {
+        "id": "3",
+        "name": "Antonio",
+        "surName": "Franchukinio",
+        "email": "franchuki@gmail.com",
+        "photo": "https://sun9-63.userapi.com/c855428/v855428187/99334/8xlZ5pwqYhw.jpg?ava=1",
+        "isOnline": true
+      },
+      "message": {
+        "id": "4f28fe41-9fcb-4ca8-96b0-29cfc836f399",
+        "text": "Шашлык?",
+        "date": 1573506655,
+        "status": "read",
+        "attachments": null
+      }
+    }
+  ],
   "messageList": [
     {
       "message": {
         "id": "9c056ca9-221c-470e-89e3-ec7718840b9c",
         "text": "Привет Насько",
-        "date": "18:01",
-        "status": "sending",
+        "date": 1573319252,
+        "status": "sent",
+        "attachments": [
+          {
+            "filename": "image1.jpg",
+            "url": "https://images.unsplash.com/photo-1558981420-bf351ce8e3ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+          }
+        ],
         "user": {
           "id": "1",
           "name": "Evgeniy",
@@ -28,8 +74,9 @@
       "message": {
         "id": "7d1a7db7-1d63-4f2d-ae66-3df2d028883d",
         "text": "Ну как дела?",
-        "date": "18:02",
-        "status": "sending",
+        "date": 1573319252,
+        "status": "read",
+        "attachments": null,
         "user": {
           "id": "1",
           "name": "Evgeniy",
@@ -44,8 +91,23 @@
       "message": {
         "id": "4981faaf-9fd4-4771-b308-3097bef9ea69",
         "text": "Hello epta",
-        "date": "18:05",
-        "status": "read",
+        "date": 1573319252,
+        "status": "sending",
+        "attachments": null,
+        "user": {
+          "id": "2",
+          "name": "Nastio",
+          "surName": "Bushmelito",
+          "email": "anastasio@gmail.com",
+          "photo": "https://media.licdn.com/dms/image/C4D03AQF_hpU8XVffHQ/profile-displayphoto-shrink_800_800/0?e=1578528000&v=beta&t=jtmDYA_KeXqmeTITucgO_4G_d9LvxR1ezG7u45_OFw8",
+          "isOnline": true
+        }
+      }
+    },
+    {
+      "message": {
+        "id": "e3171efa-be2d-446e-ab08-d32885770945",
+        "isTyping": "true",
         "user": {
           "id": "2",
           "name": "Nastio",

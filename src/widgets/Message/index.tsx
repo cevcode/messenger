@@ -6,6 +6,11 @@ import { Description } from 'ui/Description';
 import { AlignItemsTypes, ColorTypes, FontSizeTypes } from 'helpers/enums';
 import { theme } from 'helpers/theme';
 import { StatusLabel } from 'widgets/StatusLabel';
+import { formatDate } from 'helpers/functions';
+import { IMessage } from 'models/message';
+import { IUser } from 'models/user';
+import { MessageAttachments } from 'widgets/Message/Attachments';
+import { Typing } from 'widgets/Typing';
 
 interface IStyledMessageWrapper {
     isMe: boolean;
@@ -17,7 +22,7 @@ const StyledMessageWrapper = styled(Column)<IStyledMessageWrapper>`
         margin: 7px 0 0 35px;
     }
     i {
-      margin-right: 5px;
+        margin-right: 5px;
     }
     ${props =>
         props.isMe &&
@@ -27,7 +32,7 @@ const StyledMessageWrapper = styled(Column)<IStyledMessageWrapper>`
                 flex-direction: row-reverse;
             }
             > p {
-                margin: 7px 35px 0 0;                
+                margin: 7px 35px 0 0;
             }
         `}
 `;
@@ -35,26 +40,46 @@ const StyledMessageWrapper = styled(Column)<IStyledMessageWrapper>`
 const StyledMessage = styled(Column)<IStyledMessageWrapper>`
     background-color: ${theme.colors.blue};
     > p {
-      color: ${theme.colors.white};
+        color: ${theme.colors.white};
     }
     border-radius: 10px 10px 10px 0;
     max-width: 40%;
     padding: 15px 10px;
     width: auto;
     margin: 0 0 0 10px;
-    ${props => props.isMe && css`
-      border-radius: 10px 10px 0 10px;
-      margin: 0 10px 0 0;
-      background-color: ${theme.colors.white};
-      border: 1px solid ${theme.colors.lightGrey};
-      >p {
-        color: ${theme.colors.black};
-      }
-    `}
+    ${props =>
+        props.isMe &&
+        css`
+            border-radius: 10px 10px 0 10px;
+            margin: 0 10px 0 0;
+            background-color: ${theme.colors.white};
+            border: 1px solid ${theme.colors.lightGrey};
+            > p {
+                color: ${theme.colors.black};
+            }
+        `}
 `;
 
-const Message = ({ user, message, isMe }) => {
-    const { text, date, status } = message;
+interface IMessageComponent {
+    message: IMessage;
+    user: IUser;
+    isMe: boolean;
+}
+
+const Message: React.FC<IMessageComponent> = ({ user, message, isMe }) => {
+    if (message.isTyping) {
+        return (
+            <StyledMessageWrapper isMe={isMe}>
+                <Row ai={AlignItemsTypes.flexEnd}>
+                    <Photo user={user} size="25px" />
+                    <StyledMessage isMe={isMe}>
+                        <Typing />
+                    </StyledMessage>
+                </Row>
+            </StyledMessageWrapper>
+        );
+    }
+    const { text, date, status, attachments } = message;
     return (
         <StyledMessageWrapper isMe={isMe}>
             <Row ai={AlignItemsTypes.flexEnd}>
@@ -64,9 +89,8 @@ const Message = ({ user, message, isMe }) => {
                 </StyledMessage>
                 <StatusLabel isMe={isMe} status={status} />
             </Row>
-            <Description fontSize={FontSizeTypes.s}>
-                {date}
-            </Description>
+            <MessageAttachments isMe={isMe} attachments={attachments} />
+            <Description fontSize={FontSizeTypes.s}>{formatDate(date, false)}</Description>
         </StyledMessageWrapper>
     );
 };
