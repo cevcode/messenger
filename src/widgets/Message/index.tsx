@@ -11,6 +11,7 @@ import { IMessage } from 'models/message';
 import { IUser } from 'models/user';
 import { MessageAttachments } from 'widgets/Message/Attachments';
 import { Typing } from 'widgets/Typing';
+import { AudioMessage } from 'widgets/Message/AudioMessage';
 
 interface IStyledMessageWrapper {
     isMe: boolean;
@@ -47,6 +48,7 @@ const StyledMessage = styled(Column)<IStyledMessageWrapper>`
     padding: 15px 10px;
     width: auto;
     margin: 0 0 0 10px;
+    overflow: hidden;
     ${props =>
         props.isMe &&
         css`
@@ -76,6 +78,21 @@ const Message: React.FC<IMessageComponent> = ({ user, message, isMe }) => {
                         <Typing />
                     </StyledMessage>
                 </Row>
+            </StyledMessageWrapper>
+        );
+    }
+    if (message.audio) {
+        const { status, date, audio } = message;
+        return (
+            <StyledMessageWrapper isMe={isMe}>
+                <Row ai={AlignItemsTypes.flexEnd}>
+                    <Photo user={user} size="25px" />
+                    <StyledMessage isMe={isMe}>
+                        <AudioMessage audio={audio} />
+                    </StyledMessage>
+                    <StatusLabel isMe={isMe} status={status} />
+                </Row>
+                <Description fontSize={FontSizeTypes.s}>{formatDate(date, false)}</Description>
             </StyledMessageWrapper>
         );
     }

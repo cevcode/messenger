@@ -8,6 +8,7 @@ export interface IMessage {
     attachments: IMessageAttachments[] | null,
     user: IUser,
     isTyping: boolean,
+    audio: string,
 }
 
 export enum MessageStatus {

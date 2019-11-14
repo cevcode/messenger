@@ -1,6 +1,6 @@
 {
   "user": {
-    "id": "1",
+    "id": "6e89436a-607b-4ee2-8a97-232446d2d538",
     "name": "Evgeniy",
     "surName": "Kobernik",
     "email": "kobernikev@gmail.com",
@@ -12,11 +12,11 @@
       "id": "be980a03-eaf8-4cbd-b24e-7fbf2abe7b00",
       "unread": 3,
       "user": {
-        "id": "2",
+        "id": "880df605-d38b-415a-b5e3-db39cb616416",
         "name": "Nastio",
         "surName": "Bushmelito",
         "email": "anastasio@gmail.com",
-        "photo": "https://media.licdn.com/dms/image/C4D03AQF_hpU8XVffHQ/profile-displayphoto-shrink_800_800/0?e=1578528000&v=beta&t=jtmDYA_KeXqmeTITucgO_4G_d9LvxR1ezG7u45_OFw8",
+        "photo": "",
         "isOnline": true
       },
       "message": {
@@ -28,14 +28,14 @@
       }
     },
     {
-      "id": "c1198b84-65ec-45cb-91ac-80cd335dc0af",
+      "id": "d955b2b8d45de59434",
       "unread": 0,
       "user": {
-        "id": "3",
+        "id": "8d9efedb-f391-4427-96f6-bf1ec673d590",
         "name": "Antonio",
         "surName": "Franchukinio",
         "email": "franchuki@gmail.com",
-        "photo": "https://sun9-63.userapi.com/c855428/v855428187/99334/8xlZ5pwqYhw.jpg?ava=1",
+        "photo": "",
         "isOnline": true
       },
       "message": {
@@ -61,7 +61,7 @@
           }
         ],
         "user": {
-          "id": "1",
+          "id": "6e89436a-607b-4ee2-8a97-232446d2d538",
           "name": "Evgeniy",
           "surName": "Kobernik",
           "email": "kobernikev@gmail.com",
@@ -78,7 +78,7 @@
         "status": "read",
         "attachments": null,
         "user": {
-          "id": "1",
+          "id": "6e89436a-607b-4ee2-8a97-232446d2d538",
           "name": "Evgeniy",
           "surName": "Kobernik",
           "email": "kobernikev@gmail.com",
@@ -95,7 +95,7 @@
         "status": "sending",
         "attachments": null,
         "user": {
-          "id": "2",
+          "id": "880df605-d38b-415a-b5e3-db39cb616416",
           "name": "Nastio",
           "surName": "Bushmelito",
           "email": "anastasio@gmail.com",
@@ -109,7 +109,23 @@
         "id": "e3171efa-be2d-446e-ab08-d32885770945",
         "isTyping": "true",
         "user": {
-          "id": "2",
+          "id": "880df605-d38b-415a-b5e3-db39cb616416",
+          "name": "Nastio",
+          "surName": "Bushmelito",
+          "email": "anastasio@gmail.com",
+          "photo": "",
+          "isOnline": true
+        }
+      }
+    },
+    {
+      "message": {
+        "id": "eca4b298-ff55-4526-b5c6-3237ae2a21b4",
+        "audio": "https://notificationsounds.com/soundfiles/08b255a5d42b89b0585260b6f2360bdd/file-sounds-1137-eventually.mp3",
+        "date": 1573319252,
+        "status": "sending",
+        "user": {
+          "id": "880df605-d38b-415a-b5e3-db39cb616416",
           "name": "Nastio",
           "surName": "Bushmelito",
           "email": "anastasio@gmail.com",

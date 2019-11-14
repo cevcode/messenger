@@ -8,7 +8,7 @@ const StyledBox = styled.div<IBox>`
   flex-direction: column;
   background-color: ${theme.colors.white};
   ${space};
-  box-shadow: 0 0.25rem 0.5rem rgba(0,83,167,.1);
+  box-shadow: rgba(0, 169, 255, 0.2) 0px 20px 40px;
   border-radius: 5px;
   width: ${props => props.width ? props.width : '100%'};
 `;
