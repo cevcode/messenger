@@ -119,6 +119,9 @@ export const theme = {
         full: `
             width: 100%;
         `,
+        auto: `
+            width: auto;
+        `,
         default: `
             width: 180px;
         `,

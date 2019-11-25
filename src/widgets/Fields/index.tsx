@@ -11,6 +11,7 @@ const getComponentByType = (type: string) => {
         case 'email':
         case 'text':
         case 'password':
+        case 'search':
             return Input;
         case 'select':
             // TODO add new fields

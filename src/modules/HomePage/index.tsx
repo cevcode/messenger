@@ -4,7 +4,9 @@ import { Column, Row } from 'ui/Layout';
 import config from './config.json';
 import { Message } from 'widgets/Message';
 import { DialogList } from 'widgets/DialogList';
-
+import { MessageList } from 'widgets/MessageList';
+import { DialogHeader } from 'widgets/DialogHeader';
+import { MessageInput } from 'widgets/MessageInput';
 
 export interface IHomePage {
     history: History;
@@ -15,13 +17,10 @@ const HomePage: React.FC<IHomePage> = ({ history }) => {
     return (
         <Row>
             <DialogList dialogs={dialogs} user={user} />
-            <Column padding="10px 15px">
-                {messageList.map(item => {
-                    const { message } = item;
-                    return (
-                        <Message user={message.user} key={message.id} message={message} isMe={message.user.id === user.id} />
-                    )
-                })}
+            <Column>
+                <DialogHeader user={user} />
+                <MessageList messageList={messageList} user={user} />
+                <MessageInput />
             </Column>
         </Row>
     );

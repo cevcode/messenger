@@ -1,5 +1,9 @@
 import { IUser } from 'models/user';
 
+export interface IMessageList {
+    message: IMessage;
+}
+
 export interface IMessage {
     id: string;
     text: string;

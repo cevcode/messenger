@@ -37,6 +37,7 @@ export enum ComponentSizesTypes {
     l = 'l',
     m = 'm',
     full = 'full',
+    auto = 'auto',
     default = 'default',
 }
 
