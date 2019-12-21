@@ -7,6 +7,9 @@ import { theme } from 'helpers/theme';
 import { IUser } from 'models/user';
 import { IDialog } from 'models/dialog';
 import { DialogSearch } from 'widgets/DialogList/DialogSearch';
+import searchImage from 'assets/search.svg';
+import { Description } from 'ui/Description';
+import { AlignItemsTypes, ColorTypes, JustifyContentTypes, WeightTypes } from 'helpers/enums';
 
 const StyledDialogList = styled(Column)`
     width: 400px;
@@ -19,32 +22,62 @@ interface IDialogList {
     user: IUser;
 }
 
-const DialogList: React.FC<IDialogList> = ({ dialogs, user }) => {
-    const [inputValue, setValue] = useState('');
-    let filtered = Array.from(dialogs);
+interface IRenderDialogListArea {
+    filtered: IDialog[];
+    user: IUser;
+}
 
-    const onChangeInput = e => {
-        const value = e.target.value;
-        filtered = filtered.filter(dialog => dialog.user.name.indexOf(value) >= 0);
-        setValue(e.target.value);
+const StyledRenderDialogListArea = styled(Column)`
+  height: 80vh;
+  img {
+    width: 80px;
+  }
+`;
+
+// @ts-ignore
+const RenderDialogListArea: React.FC<IRenderDialogListArea> = ({ filtered, user }) => {
+    if (filtered.length) {
+        return filtered
+            .sort((a, b) => b.message.date - a.message.date)
+            .map(item => {
+                const { message, id, unread } = item;
+                return (
+                    <Dialog
+                        key={id}
+                        id={id}
+                        user={item.user}
+                        message={message}
+                        unread={unread}
+                        isMe={user.id === item.user.id}
+                    />
+                );
+            });
     }
     return (
+        <StyledRenderDialogListArea jc={JustifyContentTypes.center} ai={AlignItemsTypes.center}>
+            <img src={searchImage} alt="search-image" />
+            <Description mtop="10px" color={ColorTypes.grey} weight={WeightTypes.w600}>Диалог не найден</Description>
+        </StyledRenderDialogListArea>
+    );
+};
+
+const DialogList: React.FC<IDialogList> = ({ dialogs, user }) => {
+    const [searchValue, setSearchValue] = useState('');
+    const [filtered, setFilteredItems] = useState(dialogs);
+
+    const onSearch = (value: React.SetStateAction<string>) => {
+        if (typeof value === 'string') {
+            setFilteredItems(
+                dialogs.filter(dialog => dialog.user.name.toLowerCase().indexOf(value.toLowerCase()) >= 0)
+            );
+        }
+        setSearchValue(value);
+    };
+    return (
         <StyledDialogList>
-            <DialogSearch />
+            <DialogSearch onSearch={onSearch} searchValue={searchValue} />
             <Scrollbars>
-                {dialogs.map(item => {
-                    const { message, id, unread } = item;
-                    return (
-                        <Dialog
-                            key={id}
-                            id={id}
-                            user={item.user}
-                            message={message}
-                            unread={unread}
-                            isMe={user.id === item.user.id}
-                        />
-                    );
-                })}
+                <RenderDialogListArea filtered={filtered} user={user} />
             </Scrollbars>
         </StyledDialogList>
     );

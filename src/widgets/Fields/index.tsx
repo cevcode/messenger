@@ -28,6 +28,7 @@ export interface IField extends ISpaceTypes {
     placeholder?: string | number;
     icon?: string;
     name: string;
+    formikField?: boolean;
 }
 
 function fieldStateColor(color, error, valid){

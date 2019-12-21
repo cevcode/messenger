@@ -42,6 +42,7 @@ const FieldWrapperHOC: React.FC<IFieldWrapperHOC> = ({
                 color={color}
                 placeholder={placeholder}
                 name={name}
+                formikField={true}
                 type={type}
                 {...props}
             />

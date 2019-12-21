@@ -27,14 +27,14 @@ const StyledInput = styled.input<IInput>`
     ::placeholder {
         color: ${theme.colors.grey};
     }
-    
+
     ${props =>
         props.disabled &&
         css`
             background: ${theme.colors.grey};
             color: ${theme.colors.white};
         `}
-        ${props =>
+    ${props =>
         props.icon &&
         css`
             padding-left: 44px;
@@ -57,6 +57,7 @@ interface IInput extends ISpaceTypes {
     autoComplete?: string;
     icon?: string;
     color: ColorTypes;
+    formikField?: boolean;
 }
 
 function getIcon(icon, color) {
@@ -81,8 +82,16 @@ const Input: React.FC<IInput> = ({
     autoComplete,
     icon,
     color,
+    formikField,
     ...props
 }) => {
+    const onChangeInput = (onFieldChange, formikField) => {
+        if (formikField) {
+            return () => onFieldChange;
+        }
+        return e => onFieldChange(e.target.value);
+    };
+
     if (mask) {
         return (
             <MaskedInput
@@ -99,7 +108,7 @@ const Input: React.FC<IInput> = ({
                 disabled={disabled}
                 placeholder={placeholder}
                 placeholderChar={'\u2000'}
-                onChange={onFieldChange}
+                onChange={onChangeInput(onFieldChange, formikField)}
             />
         );
     }
@@ -119,7 +128,7 @@ const Input: React.FC<IInput> = ({
                 disabled={disabled}
                 autoComplete={autoComplete}
                 placeholder={placeholder}
-                onChange={() => onFieldChange}
+                onChange={onChangeInput(onFieldChange, formikField)}
                 {...props}
             />
         </StyledField>

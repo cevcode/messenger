@@ -27,12 +27,14 @@ const StyledSearchInput = styled(Input)`
     background-color: #f7f7f7;
 `;
 
-const DialogSearch = () => {
+const DialogSearch = ({ onSearch, searchValue }) => {
     const [searchClicked, setSearchClicked] = useState(false);
     return (
         <Row ai={AlignItemsTypes.center} padding="15px 10px">
             <StyledSearchInput
-                value=""
+                value={searchValue}
+                formikField={false}
+                onFieldChange={onSearch}
                 name="search-dialogs"
                 color={ColorTypes.grey}
                 onFocus={() => setSearchClicked(true)}
